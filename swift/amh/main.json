@@ -1,0 +1,990 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.3.255.40792",
+      "templateHash": "15129832087946865577"
+    }
+  },
+  "parameters": {
+    "storage_amh_web_disk_name": {
+      "type": "string"
+    },
+    "storage_amh_web_disk_sku": {
+      "type": "string"
+    },
+    "storage_amh_web_disk_size": {
+      "type": "int"
+    },
+    "storage_amh_db_disk_name": {
+      "type": "string"
+    },
+    "storage_amh_db_disk_sku": {
+      "type": "string"
+    },
+    "storage_amh_db_disk_size": {
+      "type": "int"
+    },
+    "storage_amh_mq_disk_name": {
+      "type": "string"
+    },
+    "storage_amh_mq_disk_sku": {
+      "type": "string"
+    },
+    "storage_amh_mq_disk_size": {
+      "type": "int"
+    },
+    "vnet_name": {
+      "type": "string"
+    },
+    "vnet_address_prefix": {
+      "type": "string"
+    },
+    "vnet_amh_web_subnet_name": {
+      "type": "string"
+    },
+    "vnet_amh_web_subnet_prefix": {
+      "type": "string"
+    },
+    "vnet_amh_web_vm_nic_name": {
+      "type": "string"
+    },
+    "vnet_amh_web_ilb_subnet_name": {
+      "type": "string"
+    },
+    "vnet_amh_web_ilb_subnet_prefix": {
+      "type": "string"
+    },
+    "vnet_amh_web_ilb_name": {
+      "type": "string"
+    },
+    "vnet_amh_web_ilb_config_name": {
+      "type": "string"
+    },
+    "vnet_amh_db_subnet_name": {
+      "type": "string"
+    },
+    "vnet_amh_db_subnet_prefix": {
+      "type": "string"
+    },
+    "vnet_amh_db_vm_nic_name": {
+      "type": "string"
+    },
+    "vnet_amh_mq_subnet_name": {
+      "type": "string"
+    },
+    "vnet_amh_mq_subnet_prefix": {
+      "type": "string"
+    },
+    "vnet_amh_mq_vm_nic_name": {
+      "type": "string"
+    },
+    "vnet_bastion_subnet_prefix": {
+      "type": "string"
+    },
+    "vmss_amh_web_name": {
+      "type": "string"
+    },
+    "vmss_amh_web_size": {
+      "type": "string"
+    },
+    "vmss_amh_web_capacity": {
+      "type": "int"
+    },
+    "vmss_amh_web_adminUserName": {
+      "type": "string"
+    },
+    "vmss_amh_web_adminPassword": {
+      "type": "string"
+    },
+    "vmss_amh_web_image_publisher": {
+      "type": "string"
+    },
+    "vmss_amh_web_image_offer": {
+      "type": "string"
+    },
+    "vmss_amh_web_image_sku": {
+      "type": "string"
+    },
+    "vmss_amh_web_osDisk_caching": {
+      "type": "string"
+    },
+    "vm_amh_db_name": {
+      "type": "string"
+    },
+    "vm_amh_db_size": {
+      "type": "string"
+    },
+    "vm_amh_db_adminUserName": {
+      "type": "string"
+    },
+    "vm_amh_db_adminPassword": {
+      "type": "string"
+    },
+    "vm_amh_db_image_publisher": {
+      "type": "string"
+    },
+    "vm_amh_db_image_offer": {
+      "type": "string"
+    },
+    "vm_amh_db_image_sku": {
+      "type": "string"
+    },
+    "vm_amh_db_osDisk_caching": {
+      "type": "string"
+    },
+    "vm_amh_mq_name": {
+      "type": "string"
+    },
+    "vm_amh_mq_size": {
+      "type": "string"
+    },
+    "vm_amh_mq_adminUserName": {
+      "type": "string"
+    },
+    "vm_amh_mq_adminPassword": {
+      "type": "string"
+    },
+    "vm_amh_mq_image_publisher": {
+      "type": "string"
+    },
+    "vm_amh_mq_image_offer": {
+      "type": "string"
+    },
+    "vm_amh_mq_image_sku": {
+      "type": "string"
+    },
+    "vm_amh_mq_osDisk_caching": {
+      "type": "string"
+    }
+  },
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "storageMod",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "storage_amh_web_disk_name": {
+            "value": "[parameters('storage_amh_web_disk_name')]"
+          },
+          "storage_amh_web_disk_size": {
+            "value": "[parameters('storage_amh_web_disk_size')]"
+          },
+          "storage_amh_web_disk_sku": {
+            "value": "[parameters('storage_amh_web_disk_sku')]"
+          },
+          "storage_amh_db_disk_name": {
+            "value": "[parameters('storage_amh_db_disk_name')]"
+          },
+          "storage_amh_db_disk_size": {
+            "value": "[parameters('storage_amh_db_disk_size')]"
+          },
+          "storage_amh_db_disk_sku": {
+            "value": "[parameters('storage_amh_db_disk_sku')]"
+          },
+          "storage_amh_mq_disk_name": {
+            "value": "[parameters('storage_amh_mq_disk_name')]"
+          },
+          "storage_amh_mq_disk_size": {
+            "value": "[parameters('storage_amh_mq_disk_size')]"
+          },
+          "storage_amh_mq_disk_sku": {
+            "value": "[parameters('storage_amh_mq_disk_sku')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.3.255.40792",
+              "templateHash": "7332209758400802656"
+            }
+          },
+          "parameters": {
+            "storage_amh_web_disk_name": {
+              "type": "string"
+            },
+            "storage_amh_web_disk_sku": {
+              "type": "string"
+            },
+            "storage_amh_web_disk_size": {
+              "type": "int"
+            },
+            "storage_amh_db_disk_name": {
+              "type": "string"
+            },
+            "storage_amh_db_disk_sku": {
+              "type": "string"
+            },
+            "storage_amh_db_disk_size": {
+              "type": "int"
+            },
+            "storage_amh_mq_disk_name": {
+              "type": "string"
+            },
+            "storage_amh_mq_disk_sku": {
+              "type": "string"
+            },
+            "storage_amh_mq_disk_size": {
+              "type": "int"
+            }
+          },
+          "functions": [],
+          "resources": [
+            {
+              "type": "Microsoft.Compute/disks",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('storage_amh_web_disk_name')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "[parameters('storage_amh_web_disk_sku')]"
+              },
+              "properties": {
+                "creationData": {
+                  "createOption": "Empty"
+                },
+                "diskSizeGB": "[parameters('storage_amh_web_disk_size')]"
+              }
+            },
+            {
+              "type": "Microsoft.Compute/disks",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('storage_amh_db_disk_name')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "[parameters('storage_amh_db_disk_sku')]"
+              },
+              "properties": {
+                "creationData": {
+                  "createOption": "Empty"
+                },
+                "diskSizeGB": "[parameters('storage_amh_db_disk_size')]"
+              }
+            },
+            {
+              "type": "Microsoft.Compute/disks",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('storage_amh_mq_disk_name')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "[parameters('storage_amh_mq_disk_sku')]"
+              },
+              "properties": {
+                "creationData": {
+                  "createOption": "Empty"
+                },
+                "diskSizeGB": "[parameters('storage_amh_mq_disk_size')]"
+              }
+            }
+          ],
+          "outputs": {
+            "amh_web_disk_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Compute/disks', parameters('storage_amh_web_disk_name'))]"
+            },
+            "amh_db_disk_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Compute/disks', parameters('storage_amh_db_disk_name'))]"
+            },
+            "amh_mq_disk_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Compute/disks', parameters('storage_amh_mq_disk_name'))]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "networkingMod",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "vnet_name": {
+            "value": "[parameters('vnet_name')]"
+          },
+          "vnet_address_prefix": {
+            "value": "[parameters('vnet_address_prefix')]"
+          },
+          "vnet_amh_web_subnet_name": {
+            "value": "[parameters('vnet_amh_web_subnet_name')]"
+          },
+          "vnet_amh_web_subnet_prefix": {
+            "value": "[parameters('vnet_amh_web_subnet_prefix')]"
+          },
+          "vnet_amh_web_vm_nic_name": {
+            "value": "[parameters('vnet_amh_web_vm_nic_name')]"
+          },
+          "vnet_amh_web_ilb_subnet_name": {
+            "value": "[parameters('vnet_amh_web_ilb_subnet_name')]"
+          },
+          "vnet_amh_web_ilb_subnet_prefix": {
+            "value": "[parameters('vnet_amh_web_ilb_subnet_prefix')]"
+          },
+          "vnet_amh_web_ilb_name": {
+            "value": "[parameters('vnet_amh_web_ilb_name')]"
+          },
+          "vnet_amh_web_ilb_config_name": {
+            "value": "[parameters('vnet_amh_web_ilb_config_name')]"
+          },
+          "vnet_amh_db_subnet_name": {
+            "value": "[parameters('vnet_amh_db_subnet_name')]"
+          },
+          "vnet_amh_db_subnet_prefix": {
+            "value": "[parameters('vnet_amh_db_subnet_prefix')]"
+          },
+          "vnet_amh_db_vm_nic_name": {
+            "value": "[parameters('vnet_amh_db_vm_nic_name')]"
+          },
+          "vnet_amh_mq_subnet_name": {
+            "value": "[parameters('vnet_amh_mq_subnet_name')]"
+          },
+          "vnet_amh_mq_subnet_prefix": {
+            "value": "[parameters('vnet_amh_mq_subnet_prefix')]"
+          },
+          "vnet_amh_mq_vm_nic_name": {
+            "value": "[parameters('vnet_amh_mq_vm_nic_name')]"
+          },
+          "vnet_bastion_subnet_prefix": {
+            "value": "[parameters('vnet_bastion_subnet_prefix')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.3.255.40792",
+              "templateHash": "17108297033160042272"
+            }
+          },
+          "parameters": {
+            "vnet_name": {
+              "type": "string"
+            },
+            "vnet_address_prefix": {
+              "type": "string"
+            },
+            "vnet_amh_web_subnet_name": {
+              "type": "string"
+            },
+            "vnet_amh_web_subnet_prefix": {
+              "type": "string"
+            },
+            "vnet_amh_web_vm_nic_name": {
+              "type": "string"
+            },
+            "vnet_amh_web_ilb_subnet_name": {
+              "type": "string"
+            },
+            "vnet_amh_web_ilb_subnet_prefix": {
+              "type": "string"
+            },
+            "vnet_amh_web_ilb_name": {
+              "type": "string"
+            },
+            "vnet_amh_web_ilb_config_name": {
+              "type": "string"
+            },
+            "vnet_amh_db_subnet_name": {
+              "type": "string"
+            },
+            "vnet_amh_db_subnet_prefix": {
+              "type": "string"
+            },
+            "vnet_amh_db_vm_nic_name": {
+              "type": "string"
+            },
+            "vnet_amh_mq_subnet_name": {
+              "type": "string"
+            },
+            "vnet_amh_mq_subnet_prefix": {
+              "type": "string"
+            },
+            "vnet_amh_mq_vm_nic_name": {
+              "type": "string"
+            },
+            "vnet_bastion_subnet_prefix": {
+              "type": "string"
+            }
+          },
+          "functions": [],
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks",
+              "apiVersion": "2020-11-01",
+              "name": "[parameters('vnet_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "[parameters('vnet_address_prefix')]"
+                  ]
+                },
+                "subnets": [
+                  {
+                    "name": "[parameters('vnet_amh_web_ilb_subnet_name')]",
+                    "properties": {
+                      "addressPrefix": "[parameters('vnet_amh_web_ilb_subnet_prefix')]"
+                    }
+                  },
+                  {
+                    "name": "[parameters('vnet_amh_web_subnet_name')]",
+                    "properties": {
+                      "addressPrefix": "[parameters('vnet_amh_web_subnet_prefix')]"
+                    }
+                  },
+                  {
+                    "name": "[parameters('vnet_amh_db_subnet_name')]",
+                    "properties": {
+                      "addressPrefix": "[parameters('vnet_amh_db_subnet_prefix')]"
+                    }
+                  },
+                  {
+                    "name": "[parameters('vnet_amh_mq_subnet_name')]",
+                    "properties": {
+                      "addressPrefix": "[parameters('vnet_amh_db_subnet_prefix')]"
+                    }
+                  },
+                  {
+                    "name": "AzureBastionSubnet",
+                    "properties": {
+                      "addressPrefix": "[parameters('vnet_bastion_subnet_prefix')]"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Microsoft.Network/networkInterfaces",
+              "apiVersion": "2020-11-01",
+              "name": "[parameters('vnet_amh_web_vm_nic_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "amh_web_ipConfig",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "subnet": {
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'), parameters('vnet_amh_web_subnet_name'))]"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Microsoft.Network/networkInterfaces",
+              "apiVersion": "2020-11-01",
+              "name": "[parameters('vnet_amh_db_vm_nic_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "amh_db_ipConfig",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "subnet": {
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'), parameters('vnet_amh_db_subnet_name'))]"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Microsoft.Network/networkInterfaces",
+              "apiVersion": "2020-11-01",
+              "name": "[parameters('vnet_amh_mq_vm_nic_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "amh_mq_ipConfig",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "subnet": {
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'), parameters('vnet_amh_mq_subnet_name'))]"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Microsoft.Network/loadBalancers",
+              "apiVersion": "2020-11-01",
+              "name": "[parameters('vnet_amh_web_ilb_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "frontendIPConfigurations": [
+                  {
+                    "name": "[parameters('vnet_amh_web_ilb_config_name')]",
+                    "properties": {
+                      "subnet": {
+                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnet_name'), parameters('vnet_amh_web_ilb_subnet_name'))]"
+                      },
+                      "privateIPAllocationMethod": "Dynamic"
+                    }
+                  }
+                ],
+                "backendAddressPools": [
+                  {
+                    "name": "amh-web-backend-pool"
+                  }
+                ],
+                "loadBalancingRules": [
+                  {
+                    "name": "amh-web-lb-rule",
+                    "properties": {
+                      "frontendIPConfiguration": {
+                        "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIpConfigurations', parameters('vnet_amh_web_ilb_name'), parameters('vnet_amh_web_ilb_config_name'))]"
+                      },
+                      "backendAddressPool": {
+                        "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('vnet_amh_web_ilb_name'), 'amh-web-backend-pool')]"
+                      },
+                      "probe": {
+                        "id": "[resourceId('Microsoft.Network/loadBalancers/probes', parameters('vnet_amh_web_ilb_name'), 'amh-web-lb-probe')]"
+                      },
+                      "protocol": "Tcp",
+                      "frontendPort": 80,
+                      "backendPort": 80,
+                      "idleTimeoutInMinutes": 15
+                    }
+                  }
+                ],
+                "probes": [
+                  {
+                    "name": "amh-web-lb-probe",
+                    "properties": {
+                      "protocol": "Tcp",
+                      "port": 80,
+                      "intervalInSeconds": 15,
+                      "numberOfProbes": 2
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "outputs": {
+            "amh_web_ilb_nic_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/loadBalancers', parameters('vnet_amh_web_ilb_name'))]"
+            },
+            "amh_web_nic_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkInterfaces', parameters('vnet_amh_web_vm_nic_name'))]"
+            },
+            "amh_db_nic_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkInterfaces', parameters('vnet_amh_db_vm_nic_name'))]"
+            },
+            "amh_mq_nic_id": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkInterfaces', parameters('vnet_amh_mq_vm_nic_name'))]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "name": "compute_mod",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "vmss_amh_web_name": {
+            "value": "[parameters('vmss_amh_web_name')]"
+          },
+          "vmss_amh_web_size": {
+            "value": "[parameters('vmss_amh_web_size')]"
+          },
+          "vmss_amh_web_capacity": {
+            "value": "[parameters('vmss_amh_web_capacity')]"
+          },
+          "vmss_amh_web_adminUserName": {
+            "value": "[parameters('vmss_amh_web_adminUserName')]"
+          },
+          "vmss_amh_web_adminPassword": {
+            "value": "[parameters('vmss_amh_web_adminPassword')]"
+          },
+          "vmss_amh_web_image_publisher": {
+            "value": "[parameters('vmss_amh_web_image_publisher')]"
+          },
+          "vmss_amh_web_image_offer": {
+            "value": "[parameters('vmss_amh_web_image_offer')]"
+          },
+          "vmss_amh_web_image_sku": {
+            "value": "[parameters('vmss_amh_web_image_sku')]"
+          },
+          "vmss_amh_web_osDisk_caching": {
+            "value": "[parameters('vmss_amh_web_osDisk_caching')]"
+          },
+          "vmss_amh_web_dataDisk_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'storageMod'), '2019-10-01').outputs.amh_web_disk_id.value]"
+          },
+          "vmss_amh_web_nic_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'networkingMod'), '2019-10-01').outputs.amh_web_nic_id.value]"
+          },
+          "vmss_amh_web_ilb_nic_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'networkingMod'), '2019-10-01').outputs.amh_web_ilb_nic_id.value]"
+          },
+          "vm_amh_db_name": {
+            "value": "[parameters('vm_amh_db_name')]"
+          },
+          "vm_amh_db_size": {
+            "value": "[parameters('vm_amh_db_size')]"
+          },
+          "vm_amh_db_adminUserName": {
+            "value": "[parameters('vm_amh_db_adminUserName')]"
+          },
+          "vm_amh_db_adminPassword": {
+            "value": "[parameters('vm_amh_db_adminPassword')]"
+          },
+          "vm_amh_db_image_publisher": {
+            "value": "[parameters('vm_amh_db_image_publisher')]"
+          },
+          "vm_amh_db_image_offer": {
+            "value": "[parameters('vm_amh_db_image_offer')]"
+          },
+          "vm_amh_db_image_sku": {
+            "value": "[parameters('vm_amh_db_image_sku')]"
+          },
+          "vm_amh_db_osDisk_caching": {
+            "value": "[parameters('vm_amh_db_osDisk_caching')]"
+          },
+          "vm_amh_db_dataDisk_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'storageMod'), '2019-10-01').outputs.amh_db_disk_id.value]"
+          },
+          "vm_amh_db_nic_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'networkingMod'), '2019-10-01').outputs.amh_db_nic_id.value]"
+          },
+          "vm_amh_mq_name": {
+            "value": "[parameters('vm_amh_mq_name')]"
+          },
+          "vm_amh_mq_size": {
+            "value": "[parameters('vm_amh_mq_size')]"
+          },
+          "vm_amh_mq_adminUserName": {
+            "value": "[parameters('vm_amh_mq_adminUserName')]"
+          },
+          "vm_amh_mq_adminPassword": {
+            "value": "[parameters('vm_amh_mq_adminPassword')]"
+          },
+          "vm_amh_mq_image_publisher": {
+            "value": "[parameters('vm_amh_mq_image_publisher')]"
+          },
+          "vm_amh_mq_image_offer": {
+            "value": "[parameters('vm_amh_mq_image_offer')]"
+          },
+          "vm_amh_mq_image_sku": {
+            "value": "[parameters('vm_amh_mq_image_sku')]"
+          },
+          "vm_amh_mq_osDisk_caching": {
+            "value": "[parameters('vm_amh_mq_osDisk_caching')]"
+          },
+          "vm_amh_mq_dataDisk_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'storageMod'), '2019-10-01').outputs.amh_db_disk_id.value]"
+          },
+          "vm_amh_mq_nic_id": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', 'networkingMod'), '2019-10-01').outputs.amh_mq_nic_id.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.3.255.40792",
+              "templateHash": "8729977558268268315"
+            }
+          },
+          "parameters": {
+            "vmss_amh_web_name": {
+              "type": "string"
+            },
+            "vmss_amh_web_size": {
+              "type": "string"
+            },
+            "vmss_amh_web_capacity": {
+              "type": "int"
+            },
+            "vmss_amh_web_adminUserName": {
+              "type": "string"
+            },
+            "vmss_amh_web_adminPassword": {
+              "type": "string"
+            },
+            "vmss_amh_web_image_publisher": {
+              "type": "string"
+            },
+            "vmss_amh_web_image_offer": {
+              "type": "string"
+            },
+            "vmss_amh_web_image_sku": {
+              "type": "string"
+            },
+            "vmss_amh_web_osDisk_caching": {
+              "type": "string"
+            },
+            "vmss_amh_web_dataDisk_id": {
+              "type": "string"
+            },
+            "vmss_amh_web_nic_id": {
+              "type": "string"
+            },
+            "vmss_amh_web_ilb_nic_id": {
+              "type": "string"
+            },
+            "vm_amh_db_name": {
+              "type": "string"
+            },
+            "vm_amh_db_size": {
+              "type": "string"
+            },
+            "vm_amh_db_adminUserName": {
+              "type": "string"
+            },
+            "vm_amh_db_adminPassword": {
+              "type": "string"
+            },
+            "vm_amh_db_image_publisher": {
+              "type": "string"
+            },
+            "vm_amh_db_image_offer": {
+              "type": "string"
+            },
+            "vm_amh_db_image_sku": {
+              "type": "string"
+            },
+            "vm_amh_db_osDisk_caching": {
+              "type": "string"
+            },
+            "vm_amh_db_dataDisk_id": {
+              "type": "string"
+            },
+            "vm_amh_db_nic_id": {
+              "type": "string"
+            },
+            "vm_amh_mq_name": {
+              "type": "string"
+            },
+            "vm_amh_mq_size": {
+              "type": "string"
+            },
+            "vm_amh_mq_adminUserName": {
+              "type": "string"
+            },
+            "vm_amh_mq_adminPassword": {
+              "type": "string"
+            },
+            "vm_amh_mq_image_publisher": {
+              "type": "string"
+            },
+            "vm_amh_mq_image_offer": {
+              "type": "string"
+            },
+            "vm_amh_mq_image_sku": {
+              "type": "string"
+            },
+            "vm_amh_mq_osDisk_caching": {
+              "type": "string"
+            },
+            "vm_amh_mq_dataDisk_id": {
+              "type": "string"
+            },
+            "vm_amh_mq_nic_id": {
+              "type": "string"
+            }
+          },
+          "functions": [],
+          "resources": [
+            {
+              "type": "Microsoft.Compute/virtualMachineScaleSets",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('vmss_amh_web_name')]",
+              "location": "[resourceGroup().location]",
+              "sku": {
+                "name": "[parameters('vmss_amh_web_image_sku')]",
+                "tier": "Standard",
+                "capacity": "[parameters('vmss_amh_web_capacity')]"
+              },
+              "properties": {
+                "overprovision": true,
+                "upgradePolicy": {
+                  "mode": "Rolling"
+                },
+                "virtualMachineProfile": {
+                  "storageProfile": {
+                    "osDisk": {
+                      "name": "[format('{0}-osDisk', parameters('vmss_amh_web_name'))]",
+                      "caching": "[parameters('vmss_amh_web_osDisk_caching')]",
+                      "createOption": "FromImage"
+                    },
+                    "dataDisks": [
+                      {
+                        "lun": 0,
+                        "createOption": "Empty",
+                        "diskSizeGB": 256
+                      }
+                    ],
+                    "imageReference": {
+                      "publisher": "[parameters('vmss_amh_web_image_publisher')]",
+                      "offer": "[parameters('vmss_amh_web_image_offer')]",
+                      "sku": "[parameters('vmss_amh_web_image_sku')]",
+                      "version": "latest"
+                    }
+                  },
+                  "osProfile": {
+                    "computerNamePrefix": "[toLower(substring(format('{0}{1}', parameters('vmss_amh_web_name'), uniqueString(resourceGroup().id)), 0, 9))]",
+                    "adminUsername": "[parameters('vmss_amh_web_adminUserName')]",
+                    "adminPassword": "[parameters('vmss_amh_web_adminPassword')]"
+                  },
+                  "networkProfile": {
+                    "networkInterfaceConfigurations": [
+                      {
+                        "name": "amh web nic config",
+                        "properties": {
+                          "primary": true,
+                          "ipConfigurations": [
+                            {
+                              "name": "amh web nic",
+                              "properties": {
+                                "subnet": {
+                                  "id": "[parameters('vmss_amh_web_nic_id')]"
+                                },
+                                "loadBalancerBackendAddressPools": [
+                                  {
+                                    "id": "[parameters('vmss_amh_web_ilb_nic_id')]"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Compute/virtualMachines",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('vm_amh_db_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "hardwareProfile": {
+                  "vmSize": "[parameters('vm_amh_db_size')]"
+                },
+                "osProfile": {
+                  "computerName": "[parameters('vm_amh_db_name')]",
+                  "adminUsername": "[parameters('vm_amh_db_adminUserName')]",
+                  "adminPassword": "[parameters('vm_amh_db_adminPassword')]"
+                },
+                "storageProfile": {
+                  "imageReference": {
+                    "publisher": "[parameters('vm_amh_db_image_publisher')]",
+                    "offer": "[parameters('vm_amh_db_image_offer')]",
+                    "sku": "[parameters('vm_amh_db_image_sku')]"
+                  },
+                  "osDisk": {
+                    "name": "[format('{0}-osDisk', parameters('vm_amh_db_name'))]",
+                    "caching": "[parameters('vm_amh_db_osDisk_caching')]",
+                    "createOption": "FromImage"
+                  },
+                  "dataDisks": [
+                    {
+                      "lun": 0,
+                      "createOption": "Attach",
+                      "managedDisk": {
+                        "id": "[parameters('vm_amh_db_dataDisk_id')]"
+                      }
+                    }
+                  ]
+                },
+                "networkProfile": {
+                  "networkInterfaces": [
+                    {
+                      "id": "[parameters('vm_amh_db_nic_id')]"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Compute/virtualMachines",
+              "apiVersion": "2020-12-01",
+              "name": "[parameters('vm_amh_mq_name')]",
+              "location": "[resourceGroup().location]",
+              "properties": {
+                "hardwareProfile": {
+                  "vmSize": "[parameters('vm_amh_mq_size')]"
+                },
+                "osProfile": {
+                  "computerName": "[parameters('vm_amh_mq_name')]",
+                  "adminUsername": "[parameters('vm_amh_mq_adminUserName')]",
+                  "adminPassword": "[parameters('vm_amh_mq_adminPassword')]"
+                },
+                "storageProfile": {
+                  "imageReference": {
+                    "publisher": "[parameters('vm_amh_mq_image_publisher')]",
+                    "offer": "[parameters('vm_amh_mq_image_offer')]",
+                    "sku": "[parameters('vm_amh_mq_image_sku')]"
+                  },
+                  "osDisk": {
+                    "name": "[format('{0}-osDisk', parameters('vm_amh_mq_name'))]",
+                    "caching": "[parameters('vm_amh_mq_osDisk_caching')]",
+                    "createOption": "FromImage"
+                  },
+                  "dataDisks": [
+                    {
+                      "lun": 0,
+                      "createOption": "Attach",
+                      "managedDisk": {
+                        "id": "[parameters('vm_amh_mq_dataDisk_id')]"
+                      }
+                    }
+                  ]
+                },
+                "networkProfile": {
+                  "networkInterfaces": [
+                    {
+                      "id": "[parameters('vm_amh_mq_nic_id')]"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'networkingMod')]",
+        "[resourceId('Microsoft.Resources/deployments', 'storageMod')]"
+      ]
+    }
+  ]
+}

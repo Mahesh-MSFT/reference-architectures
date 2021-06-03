@@ -1,0 +1,156 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storage_amh_web_disk_name": {
+            "value": ""
+        },  
+        "storage_amh_web_disk_sku": {
+            "value": ""
+        },
+        "storage_amh_web_disk_size": {
+            "value": ""
+        },
+        "storage_amh_db_disk_name": {
+            "value": ""
+        },
+        "storage_amh_db_disk_sku": {
+            "value": ""
+        },
+        "storage_amh_db_disk_size": {
+            "value": ""
+        },
+        "storage_amh_mq_disk_name": {
+            "value": ""
+        },
+        "storage_amh_mq_disk_sku": {
+            "value": ""
+        },
+        "storage_amh_mq_disk_size": {
+            "value": ""
+        },
+        "vnet_name": {
+            "value": ""
+        },
+        "vnet_address_prefix": {
+            "value": ""
+        },
+        "vnet_amh_web_subnet_name": {
+            "value": ""
+        },
+        "vnet_amh_web_subnet_prefix": {
+            "value": ""
+        },
+        "vnet_amh_web_vm_nic_name": {
+            "value": ""
+        },
+        "vnet_amh_web_ilb_subnet_name": {
+            "value": ""
+        },
+        "vnet_amh_web_ilb_subnet_prefix": {
+            "value": ""
+        },
+        "vnet_amh_web_ilb_name": {
+            "value": ""
+        },
+        "vnet_amh_web_ilb_config_name": {
+            "value": ""
+        },
+        "vnet_amh_db_subnet_name": {
+            "value": ""
+        },
+        "vnet_amh_db_subnet_prefix": {
+            "value": ""
+        },
+        "vnet_amh_db_vm_nic_name": {
+            "value": ""
+        },
+        "vnet_amh_mq_subnet_name": {
+            "value": ""
+        },
+        "vnet_amh_mq_subnet_prefix": {
+            "value": ""
+        },
+        "vnet_amh_mq_vm_nic_name": {
+            "value": ""
+        },
+        "vnet_bastion_subnet_prefix": {
+            "value": ""
+        },
+        "vmss_amh_web_name": {
+            "value": ""
+        },
+        "vmss_amh_web_size": {
+            "value": ""
+        },
+        "vmss_amh_web_capacity": {
+            "value": ""
+        },
+        "vmss_amh_web_adminUserName": {
+            "value": ""
+        },
+        "vmss_amh_web_adminPassword": {
+            "value": ""
+        },
+        "vmss_amh_web_image_publisher": {
+            "value": ""
+        },
+        "vmss_amh_web_image_offer": {
+            "value": ""
+        },
+        "vmss_amh_web_image_sku": {
+            "value": ""
+        },
+        "vmss_amh_web_osDisk_caching": {
+            "value": ""
+        },
+        "vm_amh_db_name": {
+            "value": ""
+        },
+        "vm_amh_db_size": {
+            "value": ""
+        },
+        "vm_amh_db_adminUserName": {
+            "value": ""
+        },
+        "vm_amh_db_adminPassword": {
+            "value": ""
+        },
+        "vm_amh_db_image_publisher": {
+            "value": ""
+        },
+        "vm_amh_db_image_offer": {
+            "value": ""
+        },
+        "vm_amh_db_image_sku": {
+            "value": ""
+        },
+        "vm_amh_db_osDisk_caching": {
+            "value": ""
+        },
+        "vm_amh_mq_name": {
+            "value": ""
+        },
+        "vm_amh_mq_size ": {
+            "value": ""
+        },
+        "vm_amh_mq_adminUserName": {
+            "value": ""
+        },
+        "vm_amh_mq_adminPassword": {
+            "value": ""
+        },
+        "vm_amh_mq_image_publisher": {
+            "value": ""
+        },
+        "vm_amh_mq_image_offer": {
+            "value": ""
+        },
+        "vm_amh_mq_image_sku": {
+            "value": ""
+        },
+        "vm_amh_mq_osDisk_caching": {
+            "value": ""
+        }
+    }
+}

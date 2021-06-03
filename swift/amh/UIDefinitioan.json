@@ -1,0 +1,504 @@
+{
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "config": {
+            "isWizard": false,
+            "basics": { }
+        },
+        "basics": [ ],
+        "steps": [
+            {
+                "name": "amh-storage-setup-step",
+                "label": "AMH Storage",
+                "elements": [
+                    {
+                        "name": "amh-web-storage-element",
+                        "type": "Microsoft.Storage.MultiStorageAccountCombo",
+                        "label": {
+                          "prefix": "AMH Web Disk Name",
+                          "type": "AMH Web Disk SKU"
+                        },
+                        "toolTip": {
+                          "prefix": "",
+                          "type": ""
+                        },
+                        "defaultValue": {
+                          "prefix": "amhwebdiskname",
+                          "type": "Premium_LRS"
+                        },
+                        "constraints": {
+                          "allowedTypes": [],
+                          "excludedTypes": []
+                        },
+                        "count": 1,
+                        "visible": true
+                    },
+                    {
+                      "name": "amh-web-storage-disksize-element",
+                      "type": "Microsoft.Common.Slider",
+                      "min": 128,
+                      "max": 2048,
+                      "label": "AMH Web Disk Size",
+                      "subLabel": "GB",
+                      "defaultValue": 256,
+                      "toolTip": "Pick the size in GB",
+                      "constraints": {
+                          "required": false
+                      },
+                      "visible": true
+                  },
+                  {
+                    "name": "amh-db-storage-element",
+                    "type": "Microsoft.Storage.MultiStorageAccountCombo",
+                    "label": {
+                      "prefix": "AMH Database Disk Name",
+                      "type": "AMH Database Disk SKU"
+                    },
+                    "toolTip": {
+                      "prefix": "",
+                      "type": ""
+                    },
+                    "defaultValue": {
+                      "prefix": "amhdbdiskname",
+                      "type": "Premium_LRS"
+                    },
+                    "constraints": {
+                      "allowedTypes": [],
+                      "excludedTypes": []
+                    },
+                    "count": 1,
+                    "visible": true
+                },
+                {
+                  "name": "amh-db-storage-disksize-element",
+                  "type": "Microsoft.Common.Slider",
+                  "min": 128,
+                  "max": 2048,
+                  "label": "AMH Database Disk Size",
+                  "subLabel": "GB",
+                  "defaultValue": 256,
+                  "toolTip": "Pick the size in GB",
+                  "constraints": {
+                      "required": false
+                  },
+                  "visible": true
+                },
+                {
+                  "name": "amh-mq-storage-element",
+                  "type": "Microsoft.Storage.MultiStorageAccountCombo",
+                  "label": {
+                    "prefix": "AMH Messaging Disk Name",
+                    "type": "AMH Messaging Disk SKU"
+                  },
+                  "toolTip": {
+                    "prefix": "",
+                    "type": ""
+                  },
+                  "defaultValue": {
+                    "prefix": "amhmqdiskname",
+                    "type": "Premium_LRS"
+                  },
+                  "constraints": {
+                    "allowedTypes": [],
+                    "excludedTypes": []
+                  },
+                  "count": 1,
+                  "visible": true
+                },
+                {
+                  "name": "amh-mq-storage-disksize-element",
+                  "type": "Microsoft.Common.Slider",
+                  "min": 128,
+                  "max": 2048,
+                  "label": "AMH Messaging Disk Size",
+                  "subLabel": "GB",
+                  "defaultValue": 256,
+                  "toolTip": "Pick the size in GB",
+                  "constraints": {
+                      "required": false
+                  },
+                  "visible": true
+                }
+              ]
+            },
+            {
+                "name": "amh-network-setup-step",
+                "label": "AMH Networking",
+                "elements": [
+                    {
+                        "name": "amh-vnet-element",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                            "virtualNetwork": "Virtual network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "",
+                            "subnets": ""
+                        },
+                        "defaultValue": {
+                            "name": "swift-amh-vnet",
+                            "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                            "minAddressPrefixSize": "/16"
+                        },
+                        "options": {
+                            "hideExisting": false
+                        },
+                        "subnets": {
+                            "subnet1": {
+                            "label": "AMH Workbench Subnet",
+                            "defaultValue": {
+                                "name": "swift-amh-web-subnet",
+                                "addressPrefixSize": "/24"
+                            },
+                            "constraints": {
+                                "minAddressPrefixSize": "/24",
+                                "minAddressCount": 12,
+                                "requireContiguousAddresses": true
+                            }
+                            },
+                            "subnet2": {
+                            "label": "AMH Database Subnet",
+                            "defaultValue": {
+                                "name": "swift-amh-db-subnet",
+                                "addressPrefixSize": "/26"
+                            },
+                            "constraints": {
+                                "minAddressPrefixSize": "/26",
+                                "minAddressCount": 8,
+                                "requireContiguousAddresses": true
+                            }
+                            },
+                            "subnet3": {
+                            "label": "AMH Messaging Subnet",
+                            "defaultValue": {
+                                "name": "swift-amh-mq-subnet",
+                                "addressPrefixSize": "/26"
+                            },
+                            "constraints": {
+                                "minAddressPrefixSize": "/26",
+                                "minAddressCount": 8,
+                                "requireContiguousAddresses": true
+                            }
+                            },
+                            "subnet4": {
+                            "label": "AMH Bastion Subnet",
+                            "defaultValue": {
+                                "name": "swift-amh-bastion-subnet",
+                                "addressPrefixSize": "/27"
+                            },
+                            "constraints": {
+                                "minAddressPrefixSize": "/27",
+                                "minAddressCount": 8,
+                                "requireContiguousAddresses": true
+                            }
+                            }
+                        },
+                        "visible": true
+                        },
+                        {
+                          "name": "amh-vnet-web-nic-element",
+                          "type": "Microsoft.Common.TextBox",
+                          "label": "AMH Web Network Interface Card (NIC) Name" ,
+                          "defaultValue": "amh-vnet-web-nic",
+                          "multiLine": false,
+                          "constraints": {
+                              "required": true
+                          }
+                        },
+                        {
+                          "name": "amh-vnet-db-nic-element",
+                          "type": "Microsoft.Common.TextBox",
+                          "label": "AMH Database Network Interface Card (NIC) Name" ,
+                          "defaultValue": "amh-vnet-db-nic",
+                          "multiLine": false,
+                          "constraints": {
+                              "required": true
+                          }
+                        },
+                        {
+                          "name": "amh-vnet-mq-nic-element",
+                          "type": "Microsoft.Common.TextBox",
+                          "label": "AMH Messaging Network Interface Card (NIC) Name" ,
+                          "defaultValue": "amh-vnet-mq-nic",
+                          "multiLine": false,
+                          "constraints": {
+                              "required": true
+                          }
+                        }
+                ]
+            },
+            {
+                "name": "amh-compute-setup-step",
+                "label": "AMH Compute",
+                "elements": [
+                      {
+                        "name": "amh-web-compute-vmname-element",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "AMH Workbench VM Name" ,
+                        "defaultValue": "amh-web-vm",
+                        "multiLine": false,
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "amh-web-compute-element",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "AMH Workbench VM Size",
+                        "toolTip": "",
+                        "recommendedSizes": [
+                            "Standard_D2s_v3"
+                        ],
+                        "constraints": {
+                          "allowedSizes": [],
+                          "excludedSizes": [],
+                          "numAvailabilityZonesRequired": 3,
+                          "zone": "3"
+                        },
+                        "options": {
+                          "hideDiskTypeFilter": false
+                        },
+                        "osPlatform": "Linux",
+                        "imageReference": {
+                          "publisher": "RedHat",
+                          "offer": "RHEL",
+                          "sku": "8-gen2"
+                        },
+                        "count": 1,
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-web-compute-username-element",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "AMH Workbench VM User Name",
+                        "defaultValue": "amh-web-vm-uid",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "^[-a-z0-9A-Z]{1,30}$",
+                          "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-web-compute-password-element",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                          "authenticationType": "Authentication type",
+                          "password": "AMH Workbench VM Password",
+                          "confirmPassword": "Confirm AMH Workbench VM Password",
+                          "sshPublicKey": "SSH public key"
+                        },
+                        "toolTip": {
+                          "authenticationType": "",
+                          "password": "",
+                          "sshPublicKey": ""
+                        },
+                        "constraints": {
+                          "required": true,
+                          "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
+                          "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
+                        },
+                        "options": {
+                          "hideConfirmation": false,
+                          "hidePassword": false
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-db-compute-vmname-element",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "AMH Database VM Name" ,
+                        "defaultValue": "amh-db-vm",
+                        "multiLine": false,
+                        "constraints": {
+                            "required": true
+                        }
+                      },
+                      {
+                        "name": "amh-db-compute-element",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "AMH Database VM Size",
+                        "toolTip": "",
+                        "recommendedSizes": [
+                            "Standard_D2s_v3"
+                        ],
+                        "constraints": {
+                          "allowedSizes": [],
+                          "excludedSizes": [],
+                          "numAvailabilityZonesRequired": 3,
+                          "zone": "3"
+                        },
+                        "options": {
+                          "hideDiskTypeFilter": false
+                        },
+                        "osPlatform": "Linux",
+                        "imageReference": {
+                          "publisher": "RedHat",
+                          "offer": "RHEL",
+                          "sku": "8-gen2"
+                        },
+                        "count": 1,
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-db-compute-username-element",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "AMH Database VM User Name",
+                        "defaultValue": "amh-db-vm-uid",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "^[-a-z0-9A-Z]{1,30}$",
+                          "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-db-compute-password-element",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                          "authenticationType": "Authentication type",
+                          "password": "AMH Database VM Password",
+                          "confirmPassword": "Confirm AMH Database VM Password",
+                          "sshPublicKey": "SSH public key"
+                        },
+                        "toolTip": {
+                          "authenticationType": "",
+                          "password": "",
+                          "sshPublicKey": ""
+                        },
+                        "constraints": {
+                          "required": true,
+                          "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
+                          "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
+                        },
+                        "options": {
+                          "hideConfirmation": false,
+                          "hidePassword": false
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-mq-compute-vmname-element",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "AMH Messaging VM Name" ,
+                        "defaultValue": "amh-mq-vm",
+                        "multiLine": false,
+                        "constraints": {
+                            "required": true
+                        }
+                      },
+                      {
+                        "name": "amh-mq-compute-element",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "AMH Messaging VM Size",
+                        "toolTip": "",
+                        "recommendedSizes": [
+                            "Standard_D2s_v3"
+                        ],
+                        "constraints": {
+                          "allowedSizes": [],
+                          "excludedSizes": [],
+                          "numAvailabilityZonesRequired": 3,
+                          "zone": "3"
+                        },
+                        "options": {
+                          "hideDiskTypeFilter": false
+                        },
+                        "osPlatform": "Linux",
+                        "imageReference": {
+                          "publisher": "RedHat",
+                          "offer": "RHEL",
+                          "sku": "8-gen2"
+                        },
+                        "count": 1,
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-mq-compute-username-element",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "AMH Messaging VM User Name",
+                        "defaultValue": "amh-mq-vm-uid",
+                        "toolTip": "",
+                        "constraints": {
+                          "required": true,
+                          "regex": "^[-a-z0-9A-Z]{1,30}$",
+                          "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      },
+                      {
+                        "name": "amh-mq-compute-password-element",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                          "authenticationType": "Authentication type",
+                          "password": "AMH Messaging VM Password",
+                          "confirmPassword": "Confirm AMH Messaging VM Password",
+                          "sshPublicKey": "SSH public key"
+                        },
+                        "toolTip": {
+                          "authenticationType": "",
+                          "password": "",
+                          "sshPublicKey": ""
+                        },
+                        "constraints": {
+                          "required": true,
+                          "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
+                          "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
+                        },
+                        "options": {
+                          "hideConfirmation": false,
+                          "hidePassword": false
+                        },
+                        "osPlatform": "Linux",
+                        "visible": true
+                      }
+                ]
+            }
+        ],
+        "outputs": { 
+            "vnet_name": "[steps('amh-network-setup-step').amh-vnet-element.name]",
+            "vnet_amh_web_subnet_name": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet1.name]",
+            "vnet_amh_web_subnet_prefix": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet1.addressPrefix]",
+            "vnet_amh_db_subnet_name": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet2.name]",
+            "vnet_amh_db_subnet_prefix": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet2.addressPrefix]",
+            "vnet_amh_mq_subnet_name": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet3.name]",
+            "vnet_amh_mq_subnet_prefix": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet3.addressPrefix]",
+            "vmss_amh_web_name": "[steps('amh-compute-setup-step').amh-web-compute-vmname-element.name]",
+            "vmss_amh_web_size": "[steps('amh-compute-setup-step').amh-web-compute-element.size]",
+            "vmss_amh_web_adminUserName": "[steps('amh-compute-setup-step').amh-web-compute-username-element.name]",
+            "vmss_amh_web_adminPassword": "[steps('amh-compute-setup-step').amh-web-compute-password-element.password]",
+            "vm_amh_db_name": "[steps('amh-compute-setup-step').amh-db-compute-vmname-element.name]",
+            "vm_amh_db_size": "[steps('amh-compute-setup-step').amh-db-compute-element.size]",
+            "vm_amh_db_adminUserName": "[steps('amh-compute-setup-step').amh-db-compute-username-element.name]",
+            "vm_amh_db_adminPassword": "[steps('amh-compute-setup-step').amh-db-compute-password-element.password]",
+            "vm_amh_mq_name": "[steps('amh-compute-setup-step').amh-mq-compute-vmname-element.name]",
+            "vm_amh_mq_size": "[steps('amh-compute-setup-step').amh-mq-compute-element.size]",
+            "vm_amh_mq_adminUserName": "[steps('amh-compute-setup-step').amh-mq-compute-username-element.name]",
+            "vm_amh_mq_adminPassword": "[steps('amh-compute-setup-step').amh-mq-compute-password-element.password]",
+            "storage_amh_web_disk_name": "[steps('amh-storage-setup-step').amh-web-storage-element.prefix]",
+            "storage_amh_web_disk_sku": "[steps('amh-storage-setup-step').amh-web-storage-element.type]",
+            "storage_amh_web_disk_size": "[steps('amh-storage-setup-step').amh-web-storage-disksize-element.value]",
+            "storage_amh_db_disk_name": "[steps('amh-storage-setup-step').amh-db-storage-element.prefix]",
+            "storage_amh_db_disk_sku": "[steps('amh-storage-setup-step').amh-db-storage-element.type]",
+            "storage_amh_db_disk_size": "[steps('amh-storage-setup-step').amh-db-storage-disksize-element.value]",
+            "storage_amh_mq_disk_name": "[steps('amh-storage-setup-step').amh-mq-storage-element.prefix]",
+            "storage_amh_mq_disk_sku": "[steps('amh-storage-setup-step').amh-mq-storage-element.type]",
+            "storage_amh_mq_disk_size": "[steps('amh-storage-setup-step').amh-mq-storage-disksize-element.value]",
+            "vnet_amh_web_vm_nic_name": "[steps('amh-network-setup-step').amh-vnet-web-nic-element.value]",
+            "vnet_amh_db_vm_nic_name": "[steps('amh-network-setup-step').amh-vnet-db-nic-element.value]",
+            "vnet_amh_mq_vm_nic_name": "[steps('amh-network-setup-step').amh-vnet-mq-nic-element.value]",
+            "vnet_bastion_subnet_prefix": "[steps('amh-network-setup-step').amh-vnet-element.subnets.subnet4.addressPrefix]"
+        }
+    }
+}
